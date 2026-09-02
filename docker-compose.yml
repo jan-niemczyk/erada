@@ -1,0 +1,41 @@
+services:
+  db:
+    image: mariadb:10.3
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-root}
+      MYSQL_DATABASE: ${DB_NAME:-erada}
+      MYSQL_USER: ${DB_USER:-erada}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-erada}
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./db/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  app:
+    build: ./server
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      APP_PORT: 3000
+      DB_HOST: db
+      DB_NAME: ${DB_NAME:-erada}
+      DB_USER: ${DB_USER:-erada}
+      DB_PASSWORD: ${DB_PASSWORD:-erada}
+      SESSION_DB_NAME: ${SESSION_DB_NAME:-session}
+      SESSION_SECRET: ${SESSION_SECRET:-$$2a$$10$$e8C4XrOPBO3iErdwsx6rXeCPpe4y.WCMrHqsx7TeFzwUk5QR55aIq}
+      COOKIE_SECURE: ${COOKIE_SECURE:-false}
+    ports:
+      - "${APP_PUBLISHED_PORT:-8080}:3000"
+    volumes:
+      - app_log:/app/log
+
+volumes:
+  db_data:
+  app_log:

@@ -1,0 +1,10 @@
+[Unit]
+Description=Start nodemon index.js in /var/www/erada
+ 
+[Service]
+ExecStart=/var/www/erada/start-server-service.sh
+StandardOutput=null
+ 
+[Install]
+WantedBy=multi-user.target
+Alias=erada.service

@@ -1,0 +1,48 @@
+<li class="nav-item active">
+        <a class="nav-link" routerLink="/">eRada</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Kadencja ({{activeTerm.start_date | date:'yyyy'}} - {{activeTerm.end_date | date:'yyyy'}})
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" routerLink="/terms/create-form">Dodaj</a>
+          <a class="dropdown-item" routerLink="/terms">Przeglądaj</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Sesja
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" routerLink="/sittings/create-form">Dodaj</a>
+          <a class="dropdown-item" routerLink="/sittings">Przeglądaj</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Głosowanie
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" routerLink="/votings/create-form">Dodaj</a>
+          <a class="dropdown-item" routerLink="/votings">Przeglądaj</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Radni
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" routerLink="/councillors/create-form">Dodaj</a>
+          <a class="dropdown-item" routerLink="/councillors">Przeglądaj</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown navbar-right">
+        <a class="nav-link dropdown-toggle" href="#" id="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Użytkownicy
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" routerLink="/users/create-form">Dodaj</a>
+          <a class="dropdown-item" routerLink="/users">Przeglądaj</a>
+        </div>
+      </li>

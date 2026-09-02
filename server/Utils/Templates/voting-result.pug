@@ -1,0 +1,39 @@
+p.lead
+  | Sesja nr #{data.sitting.number}, #{data.sitting.date}, #{data.sitting.uuid}
+div
+  h3.text-center
+  | Glosowanie nr #{data.sitting.queue} &quot;#{data.sitting.name}&quot;
+  small.text-muted ID glosowania: #{data.votingUuid}
+p
+  | ---
+h4.text-info
+  | G&lstrok;osy oddane: #{votesLength} / #{presence_number}
+table.table.table-hover.table-striped
+  thead.thead-inverse.thead-default
+    tr
+      th Lp.
+      th Radny
+      th G&lstrok;os
+  tbody
+    each votingResult in votingResults
+      tr
+        td= 1
+        td= votingResult.name+' '+votingResult.surname
+        td= votingResult.result
+div.row
+  div.col-sm.float-right.font-weight-bolder
+    table
+      tr.alert-info
+        td Za
+        td.float-right #{data.countYes}
+      tr.alert-danger
+        td Przeciw
+        td.float-right #{data.countNo}
+      tr
+        td Wstrzymanych
+        td.float-right #{data.countHold}
+      tr
+        td Obecnych
+        td.float-right #{data.sitting.presence_number}
+  .col-sm
+    chart([type]='type' [data] = 'data' [options] = 'options')
